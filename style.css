@@ -1,0 +1,35 @@
+body {
+  background-color: #c6c9cc;
+}
+#general {
+  background-color: white;
+  margin-top: 7%;
+  border-radius: 2px;
+  padding-bottom: 4%;
+  margin-bottom: 15%;
+}
+#completar {
+  background-color: white;
+  margin-top: 5%;
+}
+
+.button {
+  display: inline-block;
+}
+
+#cancelar {
+  float: left;
+  margin-left: 50%;
+  margin-right: 5%;
+}
+#cargarUsuario {
+  margin-left: 85%;
+}
+#datos {
+  padding: 5% 5%;
+}
+
+section {
+  margin-right: 4%;
+  display: inline;
+}
