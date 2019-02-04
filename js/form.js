@@ -15,9 +15,21 @@ $(document).ready(function() {
       .remove();
   });
 
+  //   function getGender() {
+  //     if ($("#fem").is(":checked")) {
+  //       var genero = "Femenino";
+  //       return genero;
+  //     } else {
+  //       var genero = "Masculino";
+  //       return genero;
+  //     }
+  //   }
+  //   getGender();
+
   $("#guardar").click(function() {
     var name = $("#name").val();
     var date = $("#date").val();
+    //moment().diff(moment(value, "DD-MM-YYYY"), 'years');
     var email = $("#mail").val();
     var genero = $("#gender").val();
 
@@ -27,9 +39,9 @@ $(document).ready(function() {
       "</td><td>" +
       date +
       "</td><td>" +
-      email +
-      "</td></td>" +
       genero +
+      "</td><td>" +
+      email +
       "</td><td>" +
       "<button id='delete' class='btn btn-light'> <i class='fas fa-trash'></i></button>" +
       "<button id='edit' class='btn btn-light'> <i class='fas fa-edit'></i></button>" +
@@ -37,17 +49,4 @@ $(document).ready(function() {
 
     $("table tbody").append(markup);
   });
-
-  // Find and remove selected table rows
-  //   $(".delete-row").click(function() {
-  //     $("table tbody")
-  //       .find('input[name="record"]')
-  //       .each(function() {
-  //         if ($(this).is(":checked")) {
-  //           $(this)
-  //             .parents("tr")
-  //             .remove();
-  //         }
-  //       });
-  //   });
 });

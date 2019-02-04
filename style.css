@@ -11,6 +11,7 @@ body {
 #completar {
   background-color: white;
   margin-top: 5%;
+  padding-bottom: 5%;
 }
 
 .button {
@@ -46,4 +47,8 @@ section {
 #delete,
 #edit {
   background-color: white;
+}
+
+#femenino {
+  margin-right: 4%;
 }
