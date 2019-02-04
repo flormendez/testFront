@@ -21,9 +21,18 @@ body {
   float: left;
   margin-left: 50%;
   margin-right: 5%;
+  background-color: whitesmoke;
+  border-color: black;
+  color: black;
 }
 #cargarUsuario {
   margin-left: 85%;
+  background-color: #4acb9c;
+  border-color: #4acb9c;
+}
+#guardar {
+  background-color: #4acb9c;
+  border-color: #4acb9c;
 }
 #datos {
   padding: 5% 5%;
@@ -32,4 +41,9 @@ body {
 section {
   margin-right: 4%;
   display: inline;
+}
+
+#delete,
+#edit {
+  background-color: white;
 }

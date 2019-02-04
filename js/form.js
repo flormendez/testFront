@@ -31,8 +31,8 @@ $(document).ready(function() {
       "</td></td>" +
       genero +
       "</td><td>" +
-      "<button id='delete' class='button button-list'> <i class='fas fa-trash'></i></button>" +
-      "<button id='edit' class='button button-list'> <i class='fas fa-edit'></i></button>" +
+      "<button id='delete' class='btn btn-light'> <i class='fas fa-trash'></i></button>" +
+      "<button id='edit' class='btn btn-light'> <i class='fas fa-edit'></i></button>" +
       "</td>";
 
     $("table tbody").append(markup);
