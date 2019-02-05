@@ -17,27 +17,39 @@ $(document).ready(function() {
 
   //Boton edit
   $(document).on("click", "#edit", function() {
-    //acá debería reabrir el form y dejarme editarlo
+    $(this).dialog.dialog("open");
+
+    //debería buscar todos los datos de la fila seleccionada, abrir el form y guardar los cambios
   });
 
-  //Boton delete
   $(document).on("click", "#delete", function() {
-    $(this)
+    var row = $(this).closest("tr");
+
+    $(row)
       .closest("tr")
       .remove();
+    //find o filter que lo borre del array y borrar todo el local storage y despues pushear el array entero a
+    //listaUsuarios.filter()( =>  > 6);
   });
 
-  function controlarDatos(dato) {
-    return dato != "" && dato != null;
+  function validateForm(dato) {
+    var x = dato;
+    if (x == "") {
+      alert("Todos los datos son obligatorios.");
+      return false;
+    } else {
+      return true;
+    }
   }
 
-  function controlarMail(dato) {
-    for (var i = 0; i < dato.length; i++) {
-      if ((dato[i] = "@")) {
-        return dato;
-      } else {
-        return alert("Mail inválido");
-      }
+  function validateCheckboxes() {
+    var fem = $(".fem");
+    var mas = $(".mas");
+    if (fem.is(":checked") || mas.is(":checked")) {
+      return true;
+    } else {
+      alert("Todos los datos son obligatorios.");
+      return false;
     }
   }
 
@@ -49,43 +61,57 @@ $(document).ready(function() {
     }
   }
 
+  function agregarUsuario(usuarios) {
+    $("table tbody:last-child").append(usuarios);
+  }
+
   $("#guardar").click(function() {
-    var id = 0;
     var name = $("#name").val();
     var date = $("#date").val();
-    //moment().diff(moment(value, "DD-MM-YYYY"), 'years');
+    // var age = moment().diff(moment(date, "DD-MM-YYYY"), "years");
     var email = $("#mail").val();
     var genero = getGender();
     var index = listaUsuarios.length + 1;
+    var chequearDatoNombre = validateForm(name);
+    var chequearDatoMail = validateForm(email);
+    var chequearDatoGenero = validateCheckboxes();
 
-    markup =
-      "<tr><th scope='row'>" +
-      index +
-      "</th><td>" +
-      name +
-      "</td><td>" +
-      date +
-      "</td><td>" +
-      genero +
-      "</td><td>" +
-      controlarMail(email) +
-      "</td><td>" +
-      "<button id='delete' class='btn btn-light'> <i class='fas fa-trash'></i></button>" +
-      "<button id='edit' class='btn btn-light'> <i class='fas fa-edit'></i></button>" +
-      "</td></tr>";
+    if (
+      chequearDatoNombre == true &&
+      chequearDatoMail == true &&
+      chequearDatoGenero == true
+    ) {
+      markup =
+        "<tr><th scope='row'>" +
+        index +
+        "</th><td>" +
+        name +
+        "</td><td>" +
+        date +
+        "</td><td>" +
+        genero +
+        "</td><td>" +
+        email +
+        "</td><td>" +
+        "<button id='edit' class='btn btn-light'> <i class='fas fa-edit'></i></button>" +
+        "<button id='delete' class='btn btn-light'> <i class='fas fa-trash'></i></button>" +
+        "</td></tr>";
 
-    $("table tbody:last-child").append(markup);
+      listaUsuarios.push(markup);
+      console.log(listaUsuarios);
+      guardarUsuario();
+      $(":input", "#dialog-form")
+        .not(":button, :submit, :reset, :hidden")
+        .val("")
+        .prop("checked", false)
+        .prop("selected", false);
 
-    listaUsuarios.push(markup);
-    console.log(listaUsuarios);
-    guardarUsuario();
-    $(":input", "#dialog-form")
-      .not(":button, :submit, :reset, :hidden")
-      .val("")
-      .prop("checked", false)
-      .prop("selected", false);
+      dialog.dialog("close");
 
-    dialog.dialog("close");
+      return $("table tbody:last-child").append(markup);
+    } else {
+      dialog.dialog("close");
+    }
   });
 
   $("#cancelar").click(function() {
@@ -98,10 +124,17 @@ $(document).ready(function() {
 
   function obtenerLocalStorage() {
     if (localStorage.getItem("usuarios") != null) {
-      return JSON.parse(localStorage.getItem("usuarios"));
+      var usuario = JSON.parse(localStorage.getItem("usuarios"));
+      return agregarUsuario(usuario);
       console.log("usuarios");
     } else {
       return [];
+    }
+  }
+
+  function addPage() {
+    if (listaUsuarios.length >= 5) {
+      $(".pagination").append("<li><a href='#'>2</a></li>");
     }
   }
 });

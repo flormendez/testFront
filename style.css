@@ -1,5 +1,5 @@
 body {
-  background-color: #d3d3d3;
+  background-color: #f0f0f0 !important;
   height: 100%;
 }
 
@@ -70,4 +70,12 @@ section {
 #femenino {
   margin-right: 5%;
   display: inline;
+}
+
+ul {
+  margin-left: 40%;
+}
+
+table {
+  margin-top: 4%;
 }

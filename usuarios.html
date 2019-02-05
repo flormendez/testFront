@@ -21,10 +21,12 @@
       integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
       crossorigin="anonymous"
     />
+  <script src="moment/moment.js"></script>
   
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/form.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   
     <title>Front End Test</title>
   </head>
@@ -41,7 +43,7 @@
             <div id="completar">
                 
         
-            <form name="myForm" id="datos">
+            <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post" id="datos">
                  <div class="form-group">
                    <label for="Name">Nombre:</label>
                       <input
@@ -49,6 +51,7 @@
                       class="form-control"
                       id="name"
                       placeholder="Nombre"
+                      required
                     />       
                   </div>
                   <br />
@@ -60,6 +63,7 @@
                         class="form-control"
                         id="fechaNacimiento"
                         placeholder="Date"
+                        required
                       />                
                   </div>
                   <br />  
@@ -85,6 +89,7 @@
                               class="form-control"
                               id="mail"
                               placeholder="mail"
+                              required
                             />
                           
                           </div>
@@ -127,6 +132,9 @@
               </br>
               <button id="cargarUsuario" class="button btn btn-primary" data-toggle="modal" data-target="#myModal">Cargar Usuario</button>
               </br>
+              <ul class="pagination">
+                  <li><a href="#">1</a></li>
+                  </ul>
         </div>
 
       
