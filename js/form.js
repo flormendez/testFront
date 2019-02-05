@@ -27,17 +27,26 @@ $(document).ready(function() {
       .remove();
   });
 
+  function controlarDatos(dato) {
+    return dato != "" && dato != null;
+  }
+
+  function controlarMail(dato) {
+    for (var i = 0; i < dato.length; i++) {
+      if ((dato[i] = "@")) {
+        return dato;
+      } else {
+        return alert("Mail inválido");
+      }
+    }
+  }
+
   function getGender() {
     if ($(".fem").is(":checked")) {
       return "Femenino";
     } else {
       return "Masculino";
     }
-  }
-
-  function incrementIndex() {
-    var id = 0;
-    return id++;
   }
 
   $("#guardar").click(function() {
@@ -47,7 +56,7 @@ $(document).ready(function() {
     //moment().diff(moment(value, "DD-MM-YYYY"), 'years');
     var email = $("#mail").val();
     var genero = getGender();
-    var index = incrementIndex();
+    var index = listaUsuarios.length + 1;
 
     markup =
       "<tr><th scope='row'>" +
@@ -59,22 +68,28 @@ $(document).ready(function() {
       "</td><td>" +
       genero +
       "</td><td>" +
-      email +
+      controlarMail(email) +
       "</td><td>" +
       "<button id='delete' class='btn btn-light'> <i class='fas fa-trash'></i></button>" +
       "<button id='edit' class='btn btn-light'> <i class='fas fa-edit'></i></button>" +
       "</td></tr>";
 
     $("table tbody:last-child").append(markup);
-    guardarUsuario();
+
     listaUsuarios.push(markup);
     console.log(listaUsuarios);
+    guardarUsuario();
+    $(":input", "#dialog-form")
+      .not(":button, :submit, :reset, :hidden")
+      .val("")
+      .prop("checked", false)
+      .prop("selected", false);
+
     dialog.dialog("close");
   });
 
   $("#cancelar").click(function() {
     dialog.dialog("close");
-    form[0].reset();
   });
 
   function guardarUsuario() {
