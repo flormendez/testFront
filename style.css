@@ -4,7 +4,7 @@ body {
 #general {
   background-color: white;
   margin-top: 7%;
-  border-radius: 2px;
+  border-radius: 5px;
   padding-bottom: 4%;
   margin-bottom: 15%;
 }
@@ -12,6 +12,7 @@ body {
   background-color: white;
   margin-top: 5%;
   padding-bottom: 5%;
+  border-radius: 5px;
 }
 
 .button {
@@ -51,4 +52,13 @@ section {
 
 #femenino {
   margin-right: 4%;
+}
+
+.modal {
+  margin-left: 30%;
+}
+
+#femenino {
+  margin-right: 5%;
+  display: inline;
 }

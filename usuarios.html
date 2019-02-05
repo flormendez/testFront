@@ -21,18 +21,21 @@
       integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
       crossorigin="anonymous"
     />
+  
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/form.js"></script>
-    <title>Evaluacion Front End</title>
+  
+    <title>Front End Test</title>
   </head>
   <body>
+
+    <div id="dialog-form" class="modal">
         <div class="container">
             <div class="row content-row">
         <div id="completar" class="col-5">
                 
         
-
     <form id="datos">
       <div class="form-group">
         <label for="Name">Nombre:</label>
@@ -54,39 +57,21 @@
         />
       </div>
       <br />  
-      
-      <div class="form-group">
-            <label for="gender">Sexo:</label>
-            <div class="custom-control custom-radio custom-control-inline">
-            <div class="col-xs-6">
-              <label><input type="radio" id="fem" name="indoor-outdoor"> Femenino</label>
+  
+       <label for="gender">Sexo:</label>
+           <div class="custom-control custom-radio custom-control-inline">
+             <input type="radio" id="customRadioInline1" name="customRadioInline1" class="fem custom-control-input">
+         <label class="custom-control-label" for="customRadioInline1">Femenino</label>
             </div>
-            <div class="col-xs-6">
-              <label><input type="radio" id="mas" name="indoor-outdoor"> Masculino</label>
+           <div class="custom-control custom-radio custom-control-inline">
+             <input type="radio" id="customRadioInline2" name="customRadioInline1" class="mas custom-control-input">
+         <label class="custom-control-label" for="customRadioInline2">Masculino</label>
             </div>
-        </div> 
-    
-    
-    
+       <br /> <br />
 
-         
-          <br />
-              </div>
-             <!--   <div class="form-group">
-                    <label for="Name">Sexo:</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="gender"
-                      placeholder="Sexo"
-                    />
-                  </div> -->
-
-       <br />
-       <br />
-
+    
        <div class="form-group">
-            <label for="mail">Email:</label>
+        <label for="mail">Email:</label>
             <input
               type="text"
               class="form-control"
@@ -105,6 +90,7 @@
     </div>
     
     </div>
+</div>
 </div>
 
     <!-- A PARTIR DE ACA ES USUARIOS -->
@@ -128,7 +114,7 @@
         </table>
 
     </br>
-    <button id="cargarUsuario" class="button btn btn-primary">Cargar Usuario</button>
+    <button id="cargarUsuario" class="button btn btn-primary" data-toggle="modal" data-target="#myModal">Cargar Usuario</button>
     </br>
 
       </div>

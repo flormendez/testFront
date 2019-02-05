@@ -1,7 +1,19 @@
 $(document).ready(function() {
-  $("#crearUsuario").click(function() {
-    //acá debería aparecer el form
+  obtenerLocalStorage();
+  var listaUsuarios = [];
+  var markup;
+
+  dialog = $("#dialog-form").dialog({
+    autoOpen: false,
+    height: 1000,
+    modal: true
   });
+
+  $("#cargarUsuario")
+    .button()
+    .on("click", function() {
+      dialog.dialog("open");
+    });
 
   //Boton edit
   $(document).on("click", "#edit", function() {
@@ -11,30 +23,36 @@ $(document).ready(function() {
   //Boton delete
   $(document).on("click", "#delete", function() {
     $(this)
-      .parent()
+      .closest("tr")
       .remove();
   });
 
-  //   function getGender() {
-  //     if ($("#fem").is(":checked")) {
-  //       var genero = "Femenino";
-  //       return genero;
-  //     } else {
-  //       var genero = "Masculino";
-  //       return genero;
-  //     }
-  //   }
-  //   getGender();
+  function getGender() {
+    if ($(".fem").is(":checked")) {
+      return "Femenino";
+    } else {
+      return "Masculino";
+    }
+  }
+
+  function incrementIndex() {
+    var id = 0;
+    return id++;
+  }
 
   $("#guardar").click(function() {
+    var id = 0;
     var name = $("#name").val();
     var date = $("#date").val();
     //moment().diff(moment(value, "DD-MM-YYYY"), 'years');
     var email = $("#mail").val();
-    var genero = $("#gender").val();
+    var genero = getGender();
+    var index = incrementIndex();
 
-    var markup =
-      "<th scope='row'>1</th><td>" +
+    markup =
+      "<tr><th scope='row'>" +
+      index +
+      "</th><td>" +
       name +
       "</td><td>" +
       date +
@@ -45,8 +63,30 @@ $(document).ready(function() {
       "</td><td>" +
       "<button id='delete' class='btn btn-light'> <i class='fas fa-trash'></i></button>" +
       "<button id='edit' class='btn btn-light'> <i class='fas fa-edit'></i></button>" +
-      "</td>";
+      "</td></tr>";
 
-    $("table tbody").append(markup);
+    $("table tbody:last-child").append(markup);
+    guardarUsuario();
+    listaUsuarios.push(markup);
+    console.log(listaUsuarios);
+    dialog.dialog("close");
   });
+
+  $("#cancelar").click(function() {
+    dialog.dialog("close");
+    form[0].reset();
+  });
+
+  function guardarUsuario() {
+    localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
+  }
+
+  function obtenerLocalStorage() {
+    if (localStorage.getItem("usuarios") != null) {
+      return JSON.parse(localStorage.getItem("usuarios"));
+      console.log("usuarios");
+    } else {
+      return [];
+    }
+  }
 });
