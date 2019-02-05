@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta
@@ -30,100 +30,107 @@
   </head>
   <body>
 
-    <div id="dialog-form" class="modal">
+    <div class="container-fluid">
+    <div class="row">
+     
+
+    
         <div class="container">
-            <div class="row content-row">
-        <div id="completar">
+          <div class="row content-row">
+            <div id="dialog-form" class="modal">
+            <div id="completar">
                 
         
-    <form id="datos">
-      <div class="form-group">
-        <label for="Name">Nombre:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          placeholder="Nombre"
-        />
-        
-      </div>
-      <br />
-      <div class="form-group">
-        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-        <input
-          type="date"
-          class="form-control"
-          id="fechaNacimiento"
-          placeholder="Date"
-        />
-        
+            <form name="myForm" id="datos">
+                 <div class="form-group">
+                   <label for="Name">Nombre:</label>
+                      <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      placeholder="Nombre"
+                    />       
+                  </div>
+                  <br />
 
-      </div>
-      <br />  
+                  <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="fechaNacimiento"
+                        placeholder="Date"
+                      />                
+                  </div>
+                  <br />  
   
-       <label for="gender">Sexo:</label>
-           <div class="custom-control custom-radio custom-control-inline">
-             <input type="radio" id="customRadioInline1" name="customRadioInline1" class="fem custom-control-input">
-         <label class="custom-control-label" for="customRadioInline1">Femenino</label>
-            </div>
-           <div class="custom-control custom-radio custom-control-inline">
-             <input type="radio" id="customRadioInline2" name="customRadioInline1" class="mas custom-control-input">
-         <label class="custom-control-label" for="customRadioInline2">Masculino</label>  
-         
-            </div>
-       <br /> <br />
+                    <label for="gender">Sexo:</label>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="customRadioInline1" name="customRadioInline1" class="fem custom-control-input">
+                      <label class="custom-control-label" for="customRadioInline1">Femenino</label>
+                          </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="customRadioInline2" name="customRadioInline1" class="mas custom-control-input">
+                      <label class="custom-control-label" for="customRadioInline2">Masculino</label>  
+                                  </div>
+                    <br /> <br />
      
 
 
     
-       <div class="form-group">
-        <label for="mail">Email:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="mail"
-              placeholder="mail"
-            />
-           
-          </div>
-          <br />
+                      <div class="form-group">
+                        <label for="mail">Email:</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="mail"
+                              placeholder="mail"
+                            />
+                          
+                          </div>
+                          <br />
+
             </form>
+          
           <button id="cancelar" class="button btn btn-primary">Cancelar</button>
           <button id="guardar" class="button btn btn-primary">Guardar</button>
     
   
  
-    </div>
-    
-    </div>
-</div>
-</div>
+            </div>
+            </div>
+        </div>
+      </div>
 
     <!-- A PARTIR DE ACA ES USUARIOS -->
-    <div class="container col-12">
-      <div id="general" >
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">NOMBRE</th>
-              <th scope="col">EDAD</th>
-              <th scope="col">SEXO</th>
-              <th scope="col">EMAIL</th>
-              <th scope="col">-</th>
-            </tr>
-          </thead>
-          <tbody>
-                
-                
-          </tbody>
-        </table>
 
-    </br>
-    <button id="cargarUsuario" class="button btn btn-primary" data-toggle="modal" data-target="#myModal">Cargar Usuario</button>
-    </br>
+   
+   
+        <div id="general" class="col-10">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">NOMBRE</th>
+                      <th scope="col">EDAD</th>
+                      <th scope="col">SEXO</th>
+                      <th scope="col">EMAIL</th>
+                      <th scope="col">-</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        
+                        
+                  </tbody>
+                 </table>
 
-      </div>
+              </br>
+              <button id="cargarUsuario" class="button btn btn-primary" data-toggle="modal" data-target="#myModal">Cargar Usuario</button>
+              </br>
+        </div>
+
+      
     </div>
+  </div>
   </body>
 </html>
