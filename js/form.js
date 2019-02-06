@@ -30,7 +30,7 @@ $(document).ready(function() {
     $(row)
       .closest("tr")
       .remove();
-    localStorage.removeItem(row);
+    // localStorage.removeItem(row);
 
     //find o filter que lo borre del array y borrar todo el local storage y despues pushear el array entero a
     //listaUsuarios.filter()( id => id == index);
@@ -38,6 +38,13 @@ $(document).ready(function() {
     // $('.tachito').click(function() {
     //   var id = $(this).parent().attr('index')
     //   eliminarItem()
+  });
+  $("#guardar").click(function() {
+    obtenerDatos();
+  });
+
+  $("#cancelar").click(function() {
+    dialog.dialog("close");
   });
 
   function validateForm(dato) {
@@ -73,7 +80,7 @@ $(document).ready(function() {
     $("table tbody:last-child").append(usuarios);
   }
 
-  $("#guardar").click(function() {
+  function obtenerDatos() {
     var name = $("#name").val();
     var fecha = $("#fechaNacimiento").val();
     var age = moment().diff(moment(fecha, "YYYY-MM--DD"), "years");
@@ -83,13 +90,10 @@ $(document).ready(function() {
     var chequearDatoNombre = validateForm(name);
     var chequearDatoMail = validateForm(email);
     var chequearDatoGenero = validateCheckboxes();
-    var indice = listaUsuarios.length + 1;
 
     if (chequearDatoNombre && chequearDatoMail && chequearDatoGenero) {
       markup =
-        "<tr id=" +
-        indice +
-        "><th scope='row'>" +
+        "<tr><th scope='row'>" +
         index +
         "</th><td>" +
         name +
@@ -105,7 +109,7 @@ $(document).ready(function() {
         "</td></tr>";
 
       listaUsuarios.push(markup);
-      // console.log(listaUsuarios);
+
       guardarUsuario();
       $(":input", "#dialog-form")
         .not(":button, :submit, :reset, :hidden")
@@ -119,11 +123,7 @@ $(document).ready(function() {
     } else {
       dialog.dialog("close");
     }
-  });
-
-  $("#cancelar").click(function() {
-    dialog.dialog("close");
-  });
+  }
 
   function guardarUsuario() {
     localStorage.setItem("usuarios", JSON.stringify(listaUsuarios));
@@ -131,11 +131,10 @@ $(document).ready(function() {
 
   function obtenerLocalStorage() {
     if (localStorage.getItem("usuarios") != null) {
-      var usuarios = JSON.parse(localStorage.getItem("usuarios"));
-      return agregarUsuario(usuarios);
-      //  usuarios;
-
-      // console.log("usuarios");
+      var usuario = JSON.parse(localStorage.getItem("usuarios"));
+      // listaUsuarios.push(usuarios);
+      return agregarUsuario(usuario);
+      console.log("usuarios");
     } else {
       return [];
     }
