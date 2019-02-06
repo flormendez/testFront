@@ -1,6 +1,7 @@
 $(document).ready(function() {
   obtenerLocalStorage();
   var listaUsuarios = [];
+
   var markup;
 
   dialog = $("#dialog-form").dialog({
@@ -16,20 +17,27 @@ $(document).ready(function() {
     });
 
   //Boton edit
-  $(document).on("click", "#edit", function() {
-    $(this).dialog.dialog("open");
+  $("#edit")
+    .button()
+    .on("click", function() {
+      dialog.dialog("open");
+    });
 
-    //debería buscar todos los datos de la fila seleccionada, abrir el form y guardar los cambios
-  });
+  //debería buscar todos los datos de la fila seleccionada, abrir el form y guardar los cambios
 
   $(document).on("click", "#delete", function() {
     var row = $(this).closest("tr");
-
     $(row)
       .closest("tr")
       .remove();
+    localStorage.removeItem(row);
+
     //find o filter que lo borre del array y borrar todo el local storage y despues pushear el array entero a
-    //listaUsuarios.filter()( =>  > 6);
+    //listaUsuarios.filter()( id => id == index);
+    //
+    // $('.tachito').click(function() {
+    //   var id = $(this).parent().attr('index')
+    //   eliminarItem()
   });
 
   function validateForm(dato) {
@@ -67,27 +75,26 @@ $(document).ready(function() {
 
   $("#guardar").click(function() {
     var name = $("#name").val();
-    var date = $("#date").val();
-    // var age = moment().diff(moment(date, "DD-MM-YYYY"), "years");
+    var fecha = $("#fechaNacimiento").val();
+    var age = moment().diff(moment(fecha, "YYYY-MM--DD"), "years");
     var email = $("#mail").val();
     var genero = getGender();
     var index = listaUsuarios.length + 1;
     var chequearDatoNombre = validateForm(name);
     var chequearDatoMail = validateForm(email);
     var chequearDatoGenero = validateCheckboxes();
+    var indice = listaUsuarios.length + 1;
 
-    if (
-      chequearDatoNombre == true &&
-      chequearDatoMail == true &&
-      chequearDatoGenero == true
-    ) {
+    if (chequearDatoNombre && chequearDatoMail && chequearDatoGenero) {
       markup =
-        "<tr><th scope='row'>" +
+        "<tr id=" +
+        indice +
+        "><th scope='row'>" +
         index +
         "</th><td>" +
         name +
         "</td><td>" +
-        date +
+        age +
         "</td><td>" +
         genero +
         "</td><td>" +
@@ -98,7 +105,7 @@ $(document).ready(function() {
         "</td></tr>";
 
       listaUsuarios.push(markup);
-      console.log(listaUsuarios);
+      // console.log(listaUsuarios);
       guardarUsuario();
       $(":input", "#dialog-form")
         .not(":button, :submit, :reset, :hidden")
@@ -124,9 +131,11 @@ $(document).ready(function() {
 
   function obtenerLocalStorage() {
     if (localStorage.getItem("usuarios") != null) {
-      var usuario = JSON.parse(localStorage.getItem("usuarios"));
-      return agregarUsuario(usuario);
-      console.log("usuarios");
+      var usuarios = JSON.parse(localStorage.getItem("usuarios"));
+      return agregarUsuario(usuarios);
+      //  usuarios;
+
+      // console.log("usuarios");
     } else {
       return [];
     }

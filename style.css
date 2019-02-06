@@ -73,7 +73,7 @@ section {
 }
 
 ul {
-  margin-left: 40%;
+  margin-left: 40% !important;
 }
 
 table {
