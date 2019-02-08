@@ -77,5 +77,14 @@ ul {
 }
 
 table {
-  margin-top: 4%;
+  margin-top: 10%;
+}
+
+.dataTables-paginate paging_simple_nnumbers {
+  width: 100%;
+  text-align: center;
+}
+
+#myTable {
+  margin-top: 5%;
 }

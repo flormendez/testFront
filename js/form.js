@@ -1,6 +1,8 @@
 $(document).ready(function() {
-  obtenerLocalStorage();
-  var listaUsuarios = [];
+  var listaUsuarios = obtenerLocalStorage();
+  if (listaUsuarios.length > 0) {
+    agregarUsuarios(listaUsuarios);
+  }
 
   var markup;
 
@@ -76,8 +78,29 @@ $(document).ready(function() {
     }
   }
 
-  function agregarUsuario(usuarios) {
-    $("table tbody:last-child").append(usuarios);
+  function agregarUsuarios(usuarios) {
+    for (var i = 0; i < usuarios.length; i++) {
+      markup =
+        "<tr id='" +
+        i +
+        "'><th scope='row'>" +
+        (i + 0) +
+        "</th><td>" +
+        usuarios[i]["name"] +
+        "</td><td>" +
+        usuarios[i]["age"] +
+        "</td><td>" +
+        usuarios[i]["genero"] +
+        "</td><td>" +
+        usuarios[i]["email"] +
+        "</td><td>" +
+        "<button id='edit' class='btn btn-light'> <i class='fas fa-edit'></i></button>" +
+        "<button id='delete' class='btn btn-light'> <i class='fas fa-trash'></i></button>" +
+        "</td></tr>";
+
+      $("table tbody:last-child").append(markup);
+    }
+    //$("table tbody:last-child").append(usuarios);
   }
 
   function obtenerDatos() {
@@ -93,7 +116,9 @@ $(document).ready(function() {
 
     if (chequearDatoNombre && chequearDatoMail && chequearDatoGenero) {
       markup =
-        "<tr><th scope='row'>" +
+        "<tr id='" +
+        index +
+        "'><th scope='row'>" +
         index +
         "</th><td>" +
         name +
@@ -108,7 +133,15 @@ $(document).ready(function() {
         "<button id='delete' class='btn btn-light'> <i class='fas fa-trash'></i></button>" +
         "</td></tr>";
 
-      listaUsuarios.push(markup);
+      var obj = {
+        name: name,
+        fecha: fecha,
+        age: age,
+        email: email,
+        genero: genero
+      };
+
+      listaUsuarios.push(obj);
 
       guardarUsuario();
       $(":input", "#dialog-form")
@@ -131,10 +164,11 @@ $(document).ready(function() {
 
   function obtenerLocalStorage() {
     if (localStorage.getItem("usuarios") != null) {
-      var usuario = JSON.parse(localStorage.getItem("usuarios"));
+      var usuarios = JSON.parse(localStorage.getItem("usuarios"));
       // listaUsuarios.push(usuarios);
-      return agregarUsuario(usuario);
-      console.log("usuarios");
+      //return agregarUsuario(usuario);
+      //console.log("usuarios");
+      return usuarios;
     } else {
       return [];
     }
@@ -145,4 +179,15 @@ $(document).ready(function() {
       $(".pagination").append("<li><a href='#'>2</a></li>");
     }
   }
+
+  $("#myTable").DataTable({
+    sDom:
+      '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+    paging: true,
+    pageLength: 5,
+    searching: false,
+    info: false,
+    lengthChange: false,
+    ordering: false
+  });
 });
