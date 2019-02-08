@@ -15,31 +15,38 @@ $(document).ready(function() {
   $("#cargarUsuario")
     .button()
     .on("click", function() {
-      dialog.dialog("open");
+      openForm();
     });
 
-  //Boton edit
-  $("#edit")
-    .button()
-    .on("click", function() {
-      dialog.dialog("open");
-    });
+  function openForm() {
+    dialog.dialog("open");
+  }
 
-  //debería buscar todos los datos de la fila seleccionada, abrir el form y guardar los cambios
+  $(document).on("click", "#edit", function() {
+    openForm();
+
+    var row = $(this).closest("tr");
+
+    $(row)
+      .closest("tr")
+      .remove();
+  });
 
   $(document).on("click", "#delete", function() {
     var row = $(this).closest("tr");
     $(row)
       .closest("tr")
       .remove();
-    // localStorage.removeItem(row);
+    // var index = listaUsuarios.indexOf(row);
+    // if (index > -1) {
+    //   array.splice(index, 1);
 
-    //find o filter que lo borre del array y borrar todo el local storage y despues pushear el array entero a
-    //listaUsuarios.filter()( id => id == index);
-    //
-    // $('.tachito').click(function() {
-    //   var id = $(this).parent().attr('index')
-    //   eliminarItem()
+    // guardarUsuario();
+
+    // var found = listaUsuarios.find(function(element) {
+    //   return element == row;
+    // });
+    // storage.removeItem(found);
   });
   $("#guardar").click(function() {
     obtenerDatos();
@@ -100,7 +107,6 @@ $(document).ready(function() {
 
       $("table tbody:last-child").append(markup);
     }
-    //$("table tbody:last-child").append(usuarios);
   }
 
   function obtenerDatos() {
@@ -165,9 +171,6 @@ $(document).ready(function() {
   function obtenerLocalStorage() {
     if (localStorage.getItem("usuarios") != null) {
       var usuarios = JSON.parse(localStorage.getItem("usuarios"));
-      // listaUsuarios.push(usuarios);
-      //return agregarUsuario(usuario);
-      //console.log("usuarios");
       return usuarios;
     } else {
       return [];
