@@ -37,17 +37,8 @@ $(document).ready(function() {
     $(row)
       .closest("tr")
       .remove();
-    // var index = listaUsuarios.indexOf(row);
-    // if (index > -1) {
-    //   array.splice(index, 1);
-
-    // guardarUsuario();
-
-    // var found = listaUsuarios.find(function(element) {
-    //   return element == row;
-    // });
-    // storage.removeItem(found);
   });
+
   $("#guardar").click(function() {
     obtenerDatos();
   });
@@ -191,6 +182,11 @@ $(document).ready(function() {
     searching: false,
     info: false,
     lengthChange: false,
-    ordering: false
+    ordering: false,
+    fnInitComplete: function() {
+      if ($(this).find("tbody tr").length <= 1) {
+        $("td.dataTables_empty").hide();
+      }
+    }
   });
 });

@@ -88,3 +88,8 @@ table {
 #myTable {
   margin-top: 5%;
 }
+
+td.dataTables_empty {
+  visibility: hidden;
+  display: none;
+}
