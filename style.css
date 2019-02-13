@@ -80,16 +80,16 @@ table {
   margin-top: 10%;
 }
 
-.dataTables-paginate paging_simple_nnumbers {
+/* .dataTables-paginate paging_simple_nnumbers {
   width: 100%;
   text-align: center;
-}
+} */
 
 #myTable {
   margin-top: 5%;
 }
 
-td.dataTables_empty {
+/* td.dataTables_empty {
   visibility: hidden;
   display: none;
-}
+} */

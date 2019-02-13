@@ -174,19 +174,19 @@ $(document).ready(function() {
     }
   }
 
-  $("#myTable").DataTable({
-    sDom:
-      '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-    paging: true,
-    pageLength: 5,
-    searching: false,
-    info: false,
-    lengthChange: false,
-    ordering: false,
-    fnInitComplete: function() {
-      if ($(this).find("tbody tr").length <= 1) {
-        $("td.dataTables_empty").hide();
-      }
-    }
-  });
+  // $("#myTable").DataTable({
+  //   sDom:
+  //     '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
+  //   paging: true,
+  //   pageLength: 5,
+  //   searching: false,
+  //   info: false,
+  //   lengthChange: false,
+  //   ordering: false,
+  //   fnInitComplete: function() {
+  //     if ($(this).find("tbody tr").length <= 1) {
+  //       $("td.dataTables_empty").hide();
+  //     }
+  //   }
+  // });
 });
