@@ -32,12 +32,34 @@ $(document).ready(function() {
       .remove();
   });
 
+  //  function editarUsuario(id, contenidoEditado) {
+  //   var indiceEditar;
+  //  listaUsuarios.forEach(function(usuario, index) {
+  //     if (usuario.id == id) {
+  //       indiceEditar = index;
+  //     }
+  //   });
+  //   listaUsuarios[indiceEditar].replace(contenidoEditado)
+  // guardarUsuario();
+  // },
+
   $(document).on("click", "#delete", function() {
     var row = $(this).closest("tr");
     $(row)
       .closest("tr")
       .remove();
   });
+
+  // function borrarPregunta(id) {
+  //   var indiceRemover;
+  //   listaUsuarios.forEach(function(usuario, index) {
+  //     if (usuario.id == id) {
+  //       indiceRemover = index;
+  //     }
+  //   });
+  //  listaUsuarios.splice(indiceRemover, 1);
+  //   guardarUsuario();
+  // },
 
   $("#guardar").click(function() {
     obtenerDatos();
